@@ -1,0 +1,38 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = "1.4.10"
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    Properties properties = new Properties()
+    File configFile = project.rootProject.file('local.properties')
+    properties.load(configFile.newDataInputStream())
+
+    repositories {
+        google()
+        jcenter()
+        maven {
+            name = "GithubPackages"
+            url = uri("https://maven.pkg.github.com/palliums-developers/AndroidCommonLib")
+            credentials {
+                username = System.getenv('GITHUB_USER') ?: properties.getProperty('GITHUB_USER')
+                password = System.getenv('GITHUB_PERSONAL_ACCESS_TOKEN') ?: properties.getProperty('GITHUB_PERSONAL_ACCESS_TOKEN')
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

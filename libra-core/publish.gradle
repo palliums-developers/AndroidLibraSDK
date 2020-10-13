@@ -4,7 +4,7 @@ def getGitHubUrl = { ->
     return "https://maven.pkg.github.com/palliums-developers/AndroidCommonLib"
 }
 
-def LIB_GROUP_ID = 'org.palliums.libracore'
+def LIB_GROUP_ID = 'org.palliums.lib'
 def LIB_ARTIFACT_ID = 'libra-core'
 def LIB_VERSION = '0.0.1'
 

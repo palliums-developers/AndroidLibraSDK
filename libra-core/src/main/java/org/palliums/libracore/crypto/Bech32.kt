@@ -1,4 +1,4 @@
-package com.smallraw.chain.bitcoincore.crypto
+package org.palliums.libracore.crypto
 
 open class Bech32 {
     companion object {

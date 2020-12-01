@@ -1,6 +1,6 @@
 package org.palliums.libracore.wallet
 
-import com.smallraw.chain.bitcoincore.crypto.Bech32Segwit
+import org.palliums.libracore.crypto.Bech32Segwit
 import org.palliums.libracore.transaction.AccountAddress
 import java.util.*
 

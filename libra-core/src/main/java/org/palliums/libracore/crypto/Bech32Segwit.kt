@@ -1,4 +1,4 @@
-package com.smallraw.chain.bitcoincore.crypto
+package org.palliums.libracore.crypto
 
 import java.io.ByteArrayOutputStream
 import java.lang.RuntimeException

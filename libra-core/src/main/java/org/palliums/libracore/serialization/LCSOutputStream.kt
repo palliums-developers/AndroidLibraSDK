@@ -3,11 +3,15 @@ package org.palliums.libracore.serialization
 import java.io.ByteArrayOutputStream
 
 class LCSOutputStream : ByteArrayOutputStream() {
+    fun writeBool(b: Boolean) {
+        write(LCS.encodeBool(b))
+    }
+
     fun writeShort(value: Short) {
         write(LCS.encodeShort(value))
     }
 
-    fun writeU8(value:Int){
+    fun writeU8(value: Int) {
         write(LCS.encodeU8(value))
     }
 
@@ -19,12 +23,30 @@ class LCSOutputStream : ByteArrayOutputStream() {
         write(LCS.encodeLong(value))
     }
 
+    fun writeLongOrNull(value: Long?) {
+        if (value == null) {
+            writeBool(false)
+        } else {
+            writeBool(true)
+            writeLong(value)
+        }
+    }
+
     fun writeByte(value: Byte) {
         write(LCS.encodeByte(value))
     }
 
     fun writeBytes(value: ByteArray) {
         write(LCS.encodeBytes(value))
+    }
+
+    fun writeBytesOrNull(value: ByteArray?) {
+        if (value == null) {
+            writeBool(false)
+        } else {
+            writeBool(true)
+            writeBytes(value)
+        }
     }
 
     fun writeBytesList(value: List<ByteArray>) {
@@ -35,7 +57,16 @@ class LCSOutputStream : ByteArrayOutputStream() {
         write(LCS.encodeString(value))
     }
 
-    fun writeIntAsLEB128(value: Int){
+    fun writeStringOrNull(value: String?) {
+        if (value == null) {
+            writeBool(false)
+        } else {
+            writeBool(true)
+            writeString(value)
+        }
+    }
+
+    fun writeIntAsLEB128(value: Int) {
         write(LCS.encodeIntAsULEB128(value))
     }
 }

@@ -40,7 +40,7 @@ class KeyPairTest {
         )
         assertEquals(
             Account(keyPair).getAddress().toHex(),
-            "65e39e2e6b90ac215ec79e2b84690421d7286e6684b0e8e08a0b25dec640d849"
+            "7763387ea64062298b1f31cdbfbd636f"
         )
     }
 

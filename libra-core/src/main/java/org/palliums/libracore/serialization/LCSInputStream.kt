@@ -8,7 +8,7 @@ class LCSInputStream(array: ByteArray) : ByteArrayInputStream(array) {
         return LCS.decodeBool(readByte())
     }
 
-    fun readU8():Int{
+    fun readU8(): Int {
         val value = ByteArray(1)
         read(value)
         return LCS.decodeU8(value)
@@ -36,6 +36,12 @@ class LCSInputStream(array: ByteArray) : ByteArrayInputStream(array) {
         return LCS.decodeLong(value)
     }
 
+    fun readLongOrNull(): Long? {
+        return if (readBool()) {
+            readLong()
+        } else null
+    }
+
     fun readByte(): Byte {
         val value = ByteArray(1)
         read(value)
@@ -47,6 +53,12 @@ class LCSInputStream(array: ByteArray) : ByteArrayInputStream(array) {
         val value = ByteArray(readInt)
         read(value)
         return value
+    }
+
+    fun readBytesOrNull(): ByteArray? {
+        return if (readBool()) {
+            readBytes()
+        } else null
     }
 
     fun readAddress(): ByteArray {
@@ -72,5 +84,11 @@ class LCSInputStream(array: ByteArray) : ByteArrayInputStream(array) {
         val value = ByteArray(readInt)
         read(value)
         return String(value)
+    }
+
+    fun readStringOrNull(): String? {
+        return if (readBool()) {
+            readString()
+        } else null
     }
 }

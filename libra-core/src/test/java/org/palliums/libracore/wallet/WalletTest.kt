@@ -44,7 +44,7 @@ class WalletTest {
 
         Assert.assertEquals(
             masterPrkStr,
-            "e3bffbac970f7eb023287346677051e8426d2c92d85b4b5edc99deac47952aed"
+            "5f6b55c1d40eaa008a807d534d2a840f10243c2c68b0d208ddd5e00f56f945e1"
         )
     }
 
@@ -60,11 +60,11 @@ class WalletTest {
 
         Assert.assertEquals(
             privateKey,
-            "a65111b2a22a1874f0f532f6b1a0991fbf1fedb9df8ce55a49b3e35be73ff228"
+            "7d2626e62d6b513c54a05d2104b58f6c5d645d1ddc62292350f6ca7fed4c2b58"
         )
         Assert.assertEquals(
             publicKey,
-            "b505dfc25dc69adffa72e6bc507f8cf1ad57ad442ff4bc86f5c2e41b522b8c46"
+            "3c0485e4ac6bcbd7f970f2e5e5ab24a3c467c7cf0d2c2143e0497e16a780cdb5"
         )
     }
 
@@ -78,7 +78,7 @@ class WalletTest {
 
         Assert.assertEquals(
             signHexStr,
-            "0bcb5c73b6919a6074fb4dfdb01d6496e691ac107097da68ff3ffa7a7225a5d425ea1e06c429c5a504ce2a6240c59aa765d813f7f379118b2ece059d1e8c370f"
+            "ccd697367b79f3bc7b448cbf95d1c3e1c10584ac2e1a3b95df0f0071cc70d0346db2895768ab2c0eaef9d8867c2506ee1798be6a66ff6b40f67fde82f1a1390c"
         )
     }
 
@@ -118,11 +118,11 @@ class WalletTest {
 
         Assert.assertEquals(
             address1,
-            "7f4644ae2b51b65bd3c9d414aa853407"
+            "53e59e4b4fa3c35770846f6c87ca2d35"
         )
         Assert.assertEquals(
             address2,
-            "41c30f54f4adfb37d2b16e6f245e8372"
+            "77c3734e451f4fe9c105ed1c6af53d3c"
         )
     }
 

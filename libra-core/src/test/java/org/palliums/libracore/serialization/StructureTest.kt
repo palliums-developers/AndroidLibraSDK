@@ -18,19 +18,19 @@ class StructureTest {
     @Test
     fun test_amount() {
         val encodeULong = TransactionArgument.newU64(9213671392124193148).toByteArray()
-        assertEquals(encodeULong.toHex(), "000000007CC9BDA45089DD7F".toLowerCase())
+        assertEquals(encodeULong.toHex(), "017cc9bda45089dd7f".toLowerCase())
     }
 
     @Test
     fun test_String() {
         val xxx = TransactionArgument.newByteArray("Hello, World!".toByteArray()).toByteArray()
-        assertEquals(xxx.toHex(), "020000000d48656c6c6f2c20576f726c6421".toLowerCase())
+        assertEquals(xxx.toHex(), "040d48656c6c6f2c20576f726c6421".toLowerCase())
     }
 
     @Test
     fun test_bytes() {
         val toByteArray = TransactionArgument.newByteArray("cafed00d".hexToBytes()).toByteArray()
-        assertEquals(toByteArray.toHex(), "0200000004cafed00d".toLowerCase())
+        assertEquals(toByteArray.toHex(), "0404cafed00d".toLowerCase())
     }
 
 //    @Test
@@ -160,7 +160,7 @@ class StructureTest {
 
         assertEquals(
             writeSet.toByteArray().toHex(),
-            "010000000220a71d76faa2d2d5c3224ec3d41deb293973564a791e55c6782ba76c2bf0495f9a2101217da6c6b3e19f1825cfb2676daecce3bf3de03cf26647c78df00b371b25cc970000000020c4c63f80c74b11263e421ebf8486a4e398d0dbc09fa7d4f62ccdb309f3aea81f0901217da6c6b3e19f180100000004cafed00d".toLowerCase()
+            "000220a71d76faa2d2d5c3224ec3d41deb293973564a791e55c6782ba76c2bf0495f9a2101217da6c6b3e19f1825cfb2676daecce3bf3de03cf26647c78df00b371b25cc970000000020c4c63f80c74b11263e421ebf8486a4e398d0dbc09fa7d4f62ccdb309f3aea81f0901217da6c6b3e19f180100000004cafed00d".toLowerCase()
         )
     }
 }

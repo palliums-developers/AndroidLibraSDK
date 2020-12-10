@@ -29,7 +29,7 @@ class IntentIdentifier(
     }
 
     companion object {
-        const val LIBRA_SCHEME = "libra"
+        const val LIBRA_SCHEME = "diem"
         const val CURRENCY_PARAM_NAME = "c"
         const val AMOUNT_PARAM_NAME = "am"
 

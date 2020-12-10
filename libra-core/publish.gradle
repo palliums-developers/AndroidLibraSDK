@@ -6,7 +6,7 @@ def getGitHubUrl = { ->
 
 def LIB_GROUP_ID = 'org.palliums.lib'
 def LIB_ARTIFACT_ID = 'libra-core'
-def LIB_VERSION = '0.0.3'
+def LIB_VERSION = '0.0.4'
 
 task sourceJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs

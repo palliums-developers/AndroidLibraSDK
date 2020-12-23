@@ -5,8 +5,6 @@ import org.palliums.libracore.crypto.KeyFactory
 import org.palliums.libracore.crypto.KeyPair
 import org.palliums.libracore.crypto.Seed
 import org.palliums.libracore.serialization.hexToBytes
-import org.palliums.libracore.transaction.storage.StructTag
-import org.palliums.libracore.transaction.storage.TypeTag
 import org.palliums.libracore.wallet.Account
 
 class TransactionUnitTest {
@@ -42,7 +40,6 @@ class TransactionUnitTest {
             senderAddress,
             payload,
             sequenceNumber,
-            gasCurrencyCode = lbrStructTagType(),
             maxGasAmount = 1_000_000,
             gasUnitPrice = 0,
             delayed = 600,
@@ -74,7 +71,7 @@ class TransactionUnitTest {
             TransactionPayload.Script(
                 "a11ceb0b010000000701000202020403061004160205181d0735610896011000000001010000020001000003020301010004010300010501060c0108000506080005030a020a020005060c05030a020a020109000c4c696272614163636f756e741257697468647261774361706162696c6974791b657874726163745f77697468647261775f6361706162696c697479087061795f66726f6d1b726573746f72655f77697468647261775f6361706162696c69747900000000000000000000000000000001010104010c0b0011000c050e050a010a020b030b0438000b05110202".hexToBytes(),
                 arrayListOf(
-                    lbrStructTag()
+                    newDefaultStructTypeTag()
                 ),
                 arrayListOf(
                     TransactionArgument.newAddress(payeeAddress),

@@ -1,5 +1,6 @@
 package org.palliums.libracore.crypto
 
+import org.palliums.libracore.common.*
 import org.palliums.libracore.mnemonic.English
 import org.palliums.libracore.mnemonic.Mnemonic
 import org.palliums.libracore.serialization.LCS
@@ -27,8 +28,6 @@ import java.text.Normalizer
 class Seed {
 
     companion object {
-        const val MNEMONIC_SALT_DEFAULT = "DIEM"
-        const val MNEMONIC_SALT_PREFIX = "DIEM WALLET: mnemonic salt prefix\$"
 
         fun fromMnemonic(mnemonic: List<String>, salt: String = MNEMONIC_SALT_DEFAULT): Seed {
             require(mnemonic.isNotEmpty() && mnemonic.size % 6 == 0) {
@@ -68,9 +67,6 @@ class KeyFactory {
 
     companion object {
 
-        const val MASTER_KEY_SALT = "DIEM WALLET: main key salt\$"
-        const val INFO_PREFIX = "DIEM WALLET: derived key\$"
-
         init {
             Security.addProvider(BouncyCastleProvider())
         }
@@ -91,7 +87,7 @@ class KeyFactory {
 
     fun generateKey(childDepth: Long): KeyPair {
         val info: ByteArray =
-            ByteUtility.combine(INFO_PREFIX.toByteArray(), LCS.encodeLong(childDepth))
+            ByteUtility.combine(DERIVED_KEY_INFO_PREFIX.toByteArray(), LCS.encodeLong(childDepth))
 
         val hkdfBytesGenerator = HKDFBytesGenerator(SHA3Digest(256))
         hkdfBytesGenerator.init(HKDFParameters.skipExtractParameters(this.masterPrk, info))

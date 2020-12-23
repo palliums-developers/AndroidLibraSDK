@@ -1,6 +1,7 @@
 package org.palliums.libracore.transaction
 
 import android.content.Context
+import org.palliums.libracore.common.CURRENCY_DEFAULT_CODE
 import org.palliums.libracore.move.Move
 import org.palliums.libracore.transaction.storage.StructTag
 import org.palliums.libracore.transaction.storage.TypeTag
@@ -14,7 +15,7 @@ fun RawTransaction.Companion.optionTransaction(
     senderAddress: String,
     payload: TransactionPayload,
     sequenceNumber: Long,
-    gasCurrencyCode: String = lbrStructTagType(),
+    gasCurrencyCode: String = CURRENCY_DEFAULT_CODE,
     maxGasAmount: Long = 1_000_000,
     gasUnitPrice: Long = 0,
     delayed: Long = 600,
@@ -43,7 +44,7 @@ fun TransactionPayload.Companion.optionTransactionPayload(
     amount: Long,
     metaData: ByteArray = byteArrayOf(),
     metadataSignature: ByteArray = byteArrayOf(),
-    typeTag: TypeTag = lbrStructTag()
+    typeTag: TypeTag = newDefaultStructTypeTag()
 ): TransactionPayload {
     val moveEncode = Move.decode(context.assets.open("move/libra_peer_to_peer_with_metadata.mv"))
 
@@ -68,7 +69,7 @@ fun TransactionPayload.Companion.optionTransactionPayload(
 
 fun TransactionPayload.Companion.optionAddCurrencyPayload(
     context: Context,
-    typeTag: TypeTag = lbrStructTag()
+    typeTag: TypeTag = newDefaultStructTypeTag()
 ): TransactionPayload {
     val moveEncode = Move.decode(context.assets.open("move/libra_add_currency_to_account.mv"))
 
@@ -81,16 +82,12 @@ fun TransactionPayload.Companion.optionAddCurrencyPayload(
     )
 }
 
-fun lbrStructTagType(): String {
-    return "XUS"
-}
-
-fun lbrStructTag(): TypeTag {
+fun newDefaultStructTypeTag(): TypeTag {
     return TypeTag.newStructTag(
         StructTag(
             AccountAddress.DEFAULT,
-            "XUS",
-            "XUS",
+            CURRENCY_DEFAULT_CODE,
+            CURRENCY_DEFAULT_CODE,
             arrayListOf()
         )
     )

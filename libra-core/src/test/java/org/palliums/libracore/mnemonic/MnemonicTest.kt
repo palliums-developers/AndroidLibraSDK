@@ -3,8 +3,8 @@ package org.palliums.libracore.mnemonic
 import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.palliums.libracore.crypto.Seed.Companion.MNEMONIC_SALT_DEFAULT
-import org.palliums.libracore.crypto.Seed.Companion.MNEMONIC_SALT_PREFIX
+import org.palliums.libracore.common.MNEMONIC_SALT_DEFAULT
+import org.palliums.libracore.common.MNEMONIC_SALT_PREFIX
 import org.palliums.libracore.utils.ByteUtility
 import org.palliums.libracore.utils.HexUtils
 import org.spongycastle.crypto.PBEParametersGenerator

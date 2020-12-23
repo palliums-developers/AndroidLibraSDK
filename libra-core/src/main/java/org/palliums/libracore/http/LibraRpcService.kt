@@ -3,6 +3,7 @@ package org.palliums.libracore.http
 import android.content.Context
 import android.util.Log
 import org.palliums.libracore.BuildConfig
+import org.palliums.libracore.common.CURRENCY_DEFAULT_CODE
 import org.palliums.libracore.crypto.*
 import org.palliums.libracore.serialization.toHex
 import org.palliums.libracore.transaction.*
@@ -40,7 +41,7 @@ class LibraRpcService(private val mLibraRpcRepository: LibraRpcRepository) {
         payload: TransactionPayload,
         account: Account,
         sequenceNumber: Long = -1,
-        gasCurrencyCode: String = lbrStructTagType(),
+        gasCurrencyCode: String = CURRENCY_DEFAULT_CODE,
         maxGasAmount: Long = 1_000_000,
         gasUnitPrice: Long = 0,
         delayed: Long = 600,
@@ -124,8 +125,8 @@ class LibraRpcService(private val mLibraRpcRepository: LibraRpcRepository) {
         account: Account,
         address: String,
         amount: Long,
-        typeTag: TypeTag = lbrStructTag(),
-        gasCurrencyCode: String = lbrStructTagType(),
+        typeTag: TypeTag = newDefaultStructTypeTag(),
+        gasCurrencyCode: String = CURRENCY_DEFAULT_CODE,
         chainId: Int
     ) {
         val transactionPayload =
@@ -199,7 +200,6 @@ class LibraRpcService(private val mLibraRpcRepository: LibraRpcRepository) {
         return sendTransaction(
             transactionPayload,
             account,
-            gasCurrencyCode = lbrStructTagType(),
             chainId = chainId
         )
     }
@@ -210,7 +210,7 @@ class LibraRpcService(private val mLibraRpcRepository: LibraRpcRepository) {
         payload: TransactionPayload,
         senderAddress: String,
         sequenceNumber: Long = -1L,
-        gasCurrencyCode: String = lbrStructTagType(),
+        gasCurrencyCode: String = CURRENCY_DEFAULT_CODE,
         maxGasAmount: Long = 1_000_000,
         gasUnitPrice: Long = 0,
         delayed: Long = 600,

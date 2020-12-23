@@ -1,5 +1,6 @@
 package org.palliums.libracore.transaction
 
+import org.palliums.libracore.common.RAW_TRANSACTION_HASH_SALT
 import org.palliums.libracore.serialization.LCSInputStream
 import org.palliums.libracore.serialization.LCSOutputStream
 import org.palliums.libracore.serialization.hexToBytes
@@ -36,7 +37,6 @@ data class RawTransaction(
     }
 
     companion object {
-        const val RAW_TRANSACTION_HASH_SALT = "DIEM::RawTransaction"
 
         fun decode(input: LCSInputStream): RawTransaction {
             return RawTransaction(

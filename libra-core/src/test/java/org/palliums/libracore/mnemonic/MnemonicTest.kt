@@ -3,9 +3,10 @@ package org.palliums.libracore.mnemonic
 import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.palliums.libracore.crypto.Seed.Companion.MNEMONIC_SALT_DEFAULT
+import org.palliums.libracore.crypto.Seed.Companion.MNEMONIC_SALT_PREFIX
 import org.palliums.libracore.utils.ByteUtility
 import org.palliums.libracore.utils.HexUtils
-import org.palliums.libracore.wallet.MNEMONIC_SALT_PREFIX
 import org.spongycastle.crypto.PBEParametersGenerator
 import org.spongycastle.crypto.digests.SHA3Digest
 import org.spongycastle.crypto.generators.PKCS5S2ParametersGenerator
@@ -82,7 +83,7 @@ class MnemonicTest {
             "begin"
         )
 
-        val passphrase = "LIBRA".toByteArray()
+        val passphrase = MNEMONIC_SALT_DEFAULT.toByteArray()
         val mnemonicSalt = MNEMONIC_SALT_PREFIX.toByteArray()
 
         val mnemonic = Mnemonic(English.INSTANCE)
@@ -98,7 +99,7 @@ class MnemonicTest {
 
         assertEquals(
             HexUtils.toHex(hashAlgorithm),
-            "ed7cc526bc39db7c754f1f90fbb5b7f7ce3499bee04e7525c3c599fcaa46aaea"
+            "abfd325f4a5bb45f99b0fbd601922ca5467d7814ab63a01f7a83699cfc765a8b"
         )
     }
 

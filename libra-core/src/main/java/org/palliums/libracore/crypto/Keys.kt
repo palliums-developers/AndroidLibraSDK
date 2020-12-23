@@ -1,15 +1,10 @@
 package org.palliums.libracore.crypto
 
-import net.i2p.crypto.eddsa.spec.EdDSANamedCurveTable
 import org.palliums.libracore.mnemonic.English
 import org.palliums.libracore.mnemonic.Mnemonic
 import org.palliums.libracore.serialization.LCS
 import org.palliums.libracore.serialization.toHex
 import org.palliums.libracore.utils.ByteUtility
-import org.palliums.libracore.wallet.DERIVED_KEY
-import org.palliums.libracore.wallet.MASTER_KEY_SALT
-import org.palliums.libracore.wallet.MNEMONIC_SALT_DEFAULT
-import org.palliums.libracore.wallet.MNEMONIC_SALT_PREFIX
 import org.spongycastle.crypto.digests.SHA3Digest
 import org.spongycastle.crypto.generators.HKDFBytesGenerator
 import org.spongycastle.crypto.generators.PKCS5S2ParametersGenerator
@@ -32,6 +27,9 @@ import java.text.Normalizer
 class Seed {
 
     companion object {
+        const val MNEMONIC_SALT_DEFAULT = "DIEM"
+        const val MNEMONIC_SALT_PREFIX = "DIEM WALLET: mnemonic salt prefix\$"
+
         fun fromMnemonic(mnemonic: List<String>, salt: String = MNEMONIC_SALT_DEFAULT): Seed {
             require(mnemonic.isNotEmpty() && mnemonic.size % 6 == 0) {
                 "Mnemonic must have a word count divisible with 6"
@@ -69,6 +67,10 @@ class Seed {
 class KeyFactory {
 
     companion object {
+
+        const val MASTER_KEY_SALT = "DIEM WALLET: main key salt\$"
+        const val INFO_PREFIX = "DIEM WALLET: derived key\$"
+
         init {
             Security.addProvider(BouncyCastleProvider())
         }
@@ -89,7 +91,7 @@ class KeyFactory {
 
     fun generateKey(childDepth: Long): KeyPair {
         val info: ByteArray =
-            ByteUtility.combine(DERIVED_KEY.toByteArray(), LCS.encodeLong(childDepth))
+            ByteUtility.combine(INFO_PREFIX.toByteArray(), LCS.encodeLong(childDepth))
 
         val hkdfBytesGenerator = HKDFBytesGenerator(SHA3Digest(256))
         hkdfBytesGenerator.init(HKDFParameters.skipExtractParameters(this.masterPrk, info))
@@ -116,9 +118,7 @@ interface KeyPair {
 
         fun fromMnemonic(mnemonics: List<String>): Ed25519KeyPair {
             return fromSecretKey(
-                Seed.fromMnemonic(
-                    mnemonics
-                ).data
+                Seed.fromMnemonic(mnemonics).data
             )
         }
     }

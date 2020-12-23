@@ -4,14 +4,7 @@ import org.palliums.libracore.serialization.LCSInputStream
 import org.palliums.libracore.serialization.LCSOutputStream
 import org.palliums.libracore.serialization.hexToBytes
 import org.palliums.libracore.serialization.toHex
-import org.palliums.libracore.transaction.storage.TypeTag
-import org.palliums.libracore.wallet.LIBRA_HASH_PREFIX
-import org.palliums.libracore.wallet.RAW_TRANSACTION_HASH_SALT
 import org.spongycastle.jcajce.provider.digest.SHA3
-import java.lang.IllegalArgumentException
-import java.lang.RuntimeException
-import java.nio.charset.Charset
-
 
 data class RawTransaction(
     val sender: AccountAddress,
@@ -43,6 +36,8 @@ data class RawTransaction(
     }
 
     companion object {
+        const val RAW_TRANSACTION_HASH_SALT = "DIEM::RawTransaction"
+
         fun decode(input: LCSInputStream): RawTransaction {
             return RawTransaction(
                 AccountAddress.decode(input),

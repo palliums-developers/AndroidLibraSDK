@@ -2,7 +2,6 @@ package org.palliums.libracore.transaction
 
 import android.content.Context
 import org.palliums.libracore.move.Move
-import org.palliums.libracore.serialization.hexToBytes
 import org.palliums.libracore.transaction.storage.StructTag
 import org.palliums.libracore.transaction.storage.TypeTag
 import org.palliums.libracore.utils.HexUtils
@@ -83,15 +82,15 @@ fun TransactionPayload.Companion.optionAddCurrencyPayload(
 }
 
 fun lbrStructTagType(): String {
-    return "LBR"
+    return "XUS"
 }
 
 fun lbrStructTag(): TypeTag {
     return TypeTag.newStructTag(
         StructTag(
             AccountAddress.DEFAULT,
-            "LBR",
-            "LBR",
+            "XUS",
+            "XUS",
             arrayListOf()
         )
     )

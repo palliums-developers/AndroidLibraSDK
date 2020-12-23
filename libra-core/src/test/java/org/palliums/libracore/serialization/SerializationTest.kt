@@ -1,11 +1,9 @@
 package org.palliums.libracore.serialization
 
-import okhttp3.internal.toHexString
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.palliums.libracore.utils.HexUtils
 import java.io.ByteArrayInputStream
-import java.io.InputStream
 
 class SerializationTest {
     @Test

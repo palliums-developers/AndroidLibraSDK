@@ -1,5 +1,6 @@
 package org.palliums.libracore.http
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -34,8 +35,11 @@ data class AccountStateDTO(
     val delegatedKeyRotationCapability: Boolean
 )
 
+@Keep
 data class AccountBalance(
+    @SerializedName("amount")
     val amount: Long,
+    @SerializedName("currency")
     val currency: String
 )
 
@@ -58,6 +62,7 @@ data class GetTransactionDTO(
     }
 }
 
+@Keep
 data class VmStatus(
     val type: String
 ) {
@@ -66,6 +71,7 @@ data class VmStatus(
     }
 }
 
+@Keep
 data class Event(
     @SerializedName("data")
     val `data`: Data,
@@ -77,6 +83,7 @@ data class Event(
     val transactionVersion: Int
 )
 
+@Keep
 data class Transaction(
     @SerializedName("expiration_time")
     val expirationTime: Int,
@@ -104,6 +111,7 @@ data class Transaction(
     val type: String
 )
 
+@Keep
 data class Data(
     @SerializedName("amount")
     val amount: Amount,
@@ -117,6 +125,7 @@ data class Data(
     val type: String
 )
 
+@Keep
 data class Amount(
     @SerializedName("amount")
     val amount: Int,
@@ -124,6 +133,7 @@ data class Amount(
     val currency: String
 )
 
+@Keep
 data class Script(
     @SerializedName("type")
     val type: String

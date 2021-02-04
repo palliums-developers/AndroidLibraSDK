@@ -104,16 +104,16 @@ class AccountIdentifier(
     }
 
     enum class NetworkPrefix(val value: String) {
-        MainnetPrefix("lbr"),
-        TestnetPrefix("tlb"),
-        PreMainnetPrefix("plb");
+        MainnetPrefix("dm"),
+        TestnetPrefix("tdm"),
+        PreMainnetPrefix("pdm");
 
         companion object {
             fun parse(prefix: String): NetworkPrefix? {
                 return when (prefix) {
-                    "lbr" -> MainnetPrefix
-                    "tlb" -> TestnetPrefix
-                    "plb" -> PreMainnetPrefix
+                    "dm" -> MainnetPrefix
+                    "tdm" -> TestnetPrefix
+                    "pdm" -> PreMainnetPrefix
                     else -> null
                 }
             }
